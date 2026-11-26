@@ -494,14 +494,14 @@ instance : DiscreteTopology (classLattice g ⊥ Q) := by
   -- A compact set `K` holds finitely many lattice points: they come from rational vectors in the
   -- compact adelic set `Q⁻¹ K × g Ô ^ n`, and the rational vectors form a lattice
   -- (`isCovolOneLattice_ratVectors`).
-  refine continuous_subtype_val.discrete_of_tendsto_cofinite_cocompact
+  refine continuous_subtypeVal.discrete_of_tendsto_cofinite_cocompact
     (tendsto_cofinite_cocompact_iff.mpr fun K hK ↦ ?_)
   let f (p : V × (n → 𝔸f E)) (i : n) : (InfinitePlace E → ℂ) × 𝔸f E :=
     (Q.symm p.fst i, ((g : Matrix n n (𝔸f E)) *ᵥ p.snd) i)
   have h_compact : IsCompact (f '' K ×ˢ {x : n → 𝔸f E | ∀ i : n, x i ∈ Ô E}) :=
     (hK.prod (isCompact_pi_infinite fun _ : n ↦ isCompact_Ô)).image_of_continuous _
   refine isCovolOneLattice_ratVectors.finite_preimage h_compact
-    |>.image (fun y : n → E ↦ Q (toRealVectors y)) |>.preimage injOn_subtype_val |>.subset ?_
+    |>.image (fun y : n → E ↦ Q (toRealVectors y)) |>.preimage injOn_subtypeVal |>.subset ?_
   rintro ⟨_, y, hy, rfl⟩ hy_mem
   -- `y` comes from the pair `(Q y, g⁻¹ y)` of the compact set, since `g⁻¹ y` is integral.
   have h_image : f (Q (toRealVectors y), frameCoords g y) =
@@ -517,7 +517,7 @@ instance [DiscreteTopology (classLattice g S Q)] : IsZLattice ℝ (classLattice 
   -- real span form the preimage of a finite-dimensional subspace, hence a closed set.
   have h_closed : IsClosed ((span ℝ (classLattice g S Q : Set V)).comap
       (Q : RealVectors E n →ₗ[ℝ] V) : Set (RealVectors E n)) :=
-    Submodule.closed_of_finiteDimensional _
+    Submodule.isClosed_of_finiteDimensional _
   refine ⟨eq_top_iff'.mpr (Q.surjective.forall.mpr
     (isClosed_property denseRange_toRealVectors h_closed fun y ↦ ?_))⟩
   obtain ⟨m, hm, hy⟩ := exists_nsmul_adelicTorsion_eq_zero (frameTorsionClass g y)

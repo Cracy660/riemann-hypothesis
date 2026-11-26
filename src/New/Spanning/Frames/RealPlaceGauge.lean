@@ -143,7 +143,7 @@ lemma dualColumnGaussian_succ_mul_heisenbergElem {a : Fin 𝔰.ϱ} {ν : 𝔰.G�
       ({b : Fin 𝔰.ϱ | b.val < a} : Finset (Fin 𝔰.ϱ)) := by grind
   push_cast [dualColumnGaussian, ← mulVec_mulVec]
   -- Split off the term of column `e*_a` and compare the summands.
-  rw [← add_sum_erase (a := a) _ _ (by simp), h_erase, mul_add, exp_add, enorm_mul,
+  rw [← add_sum_erase (a := a) _ _ (by simp), h_erase, mul_add, exp_add, eNorm_mul,
     ← sum_subtype_eq_sum_filter, subtype_univ]
   congr 4
   · congr 1
@@ -537,7 +537,7 @@ lemma RealPlaceSizes.lintegral_quotientMeasureFrom_eq_haarRatio_mul (hF : RealPl
   have h_incl : MeasurePreserving (fun p : 𝔰.G₁ × besselU ↦ ((p.2 : 𝔰.G₁), p.1))
       (θ.prod 𝔰.besselHaar) ((𝔰.besselHaar.map .val).prod θ) := by
     have h_val : MeasurePreserving Subtype.val 𝔰.besselHaar (𝔰.besselHaar.map .val) :=
-      measurable_subtype_coe.measurePreserving _
+      measurable_subtypeVal.measurePreserving _
     exact (h_val.prod (.id θ)).comp measurePreserving_swap
   have h_mul : MeasurePreserving (fun p : 𝔰.G₁ × 𝔰.G₁ ↦ p.1 * p.2)
       ((𝔰.besselHaar.map .val).prod θ) (hF.haarRatio • volume) := ⟨measurable_mul, h_conv⟩

@@ -497,7 +497,7 @@ lemma partialCorrelation_eq_integral_floorMeasure (hk : F.IsPairingKernel j k d)
 lemma enorm_partialCorrelation_le (hk : F.IsPairingKernel j k d) :
     ‖F.partialCorrelation l k g y‖ₑ ≤ F.pivotL1Norm l k g y := by
   rw [hk.partialCorrelation_eq_integral_floorMeasure]
-  exact enorm_integral_le_lintegral_enorm _
+  exact eNorm_integral_le_lintegral_eNorm _
 
 /-- Let `k` satisfy `F.IsPairingKernel j k d` with `j ≤ l`. Then `F.partialCorrelation l k`, the
 integral of k(x g, x y) in x for `F.quotientMeasureFrom l`, is unchanged when both arguments are

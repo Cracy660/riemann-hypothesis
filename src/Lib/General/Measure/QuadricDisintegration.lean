@@ -344,7 +344,7 @@ lemma map_skewMeasure_hermitianMul (hu : star u.val = u) :
           rw [map_mul_volume, (h_split.smul_measure _).map_eq]
   refine Measure.ext fun S _ ↦ (ENNReal.pow_right_strictMono two_ne_zero).injective ?_
   calc skewMeasure.map mul S ^ 2 = (P.modulus u)⁻¹ * skewMeasure S ^ 2 := by
-        rw [sq, ← prod_prod, h_prod, Measure.smul_apply, prod_prod, _root_.smul_eq_mul, sq]
+        rw [sq, ← prod_prod, h_prod, smul_apply, prod_prod, _root_.smul_eq_mul, sq]
     _ = (P.modulus u ^ (-(1 / 2) : ℝ) • skewMeasure) S ^ 2 := by
         simp [mul_pow, ← rpow_mul_natCast, rpow_neg_one]
 
@@ -455,7 +455,7 @@ lemma IsDisintegration.unique {l l' : skewAdjoint A → Measure (ι → A)}
         ∫⁻ β : skewAdjoint A, (∫⁻ x, f x ∂l' β) * s.indicator 1 β.val ∂skewMeasure := by
       simpa (disch := fun_prop) [Φ, lintegral_mul_const] using
         (hl.lintegral_eq Φ hΦ).symm.trans (hl'.lintegral_eq Φ hΦ)
-    simpa [indicator, ← lintegral_indicator (measurable_subtype_coe hs)] using h_both
+    simpa [indicator, ← lintegral_indicator (measurable_subtypeVal hs)] using h_both
   have h_eq : (∫⁻ x, f x ∂l ·) = (∫⁻ x, f x ∂l' ·) :=
     eq_of_ae_eq (ae_eq_of_forall_setLIntegral_eq_of_sigmaFinite h_cont.measurable
       h_cont'.measurable h_setLIntegral) h_cont h_cont'

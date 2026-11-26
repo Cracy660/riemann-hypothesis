@@ -105,7 +105,7 @@ lemma integrable_slice (f : 𝒮 V) : Integrable fun x : p → 𝔸 E ↦ D.slic
   -- Unfold the integral into an integral over the quotient of sums over the lattice `E^p`.
   calc ∫⁻ x : p → 𝔸 E, ‖D.slice x f‖ₑ
     _ ≤ _ := (lintegral_addOrbitMeasure_lintegral (H := New.ratVectors E p) (ν := .count)
-        (D.continuous_slice f).enorm.measurable).ge
+        (D.continuous_slice f).eNorm.measurable).ge
     _ < ⊤ := by
       refine IsFiniteMeasure.lintegral_lt_top_of_bounded_to_ennreal _ ⟨C * ‖f‖₊, fun x ↦ ?_⟩
       -- The points of `ratVectors` are the `toAdele ∘ ξ`.
@@ -356,7 +356,7 @@ lemma zeroTerm_omega_levi (f : 𝒮 V) :
   have hI : 0 < I := by
     -- the integrand of the pair `(u, u)` has norm `‖w‖² φ²`, which is not zero at `0`
     simpa [hu, hw, φ, I, mul_mul_mul_comm ‖w‖, integral_const_mul] using
-      integral_pos_of_integrable_nonneg_nonzero (x := 0) (by fun_prop)
+      integral_pos_of_integrable_nonneg_ne_zero (x := 0) (by fun_prop)
         (D.integrable_dataInner_slice u u).norm (fun _ ↦ norm_nonneg _)
         (by simp [hu, hw, φ, vacuumFn])
   have hφ_cont : Continuous φ := (cont (adelicHeisenberg E 1)).norm.pow 2

@@ -482,7 +482,7 @@ lemma IsSeparatingFamily.prod {S : Scheme} [IsReduced S] {A B : Over S} {V W J :
   let j : A.hom.smoothLocus.toScheme ⟶ A.left := A.hom.smoothLocus.ι
   have : Smooth (j ≫ A.hom) := by
     simp [j, ← Hom.smoothLocus_eq_top_iff, ← j.preimage_smoothLocus_eq]
-  have : IsDominant j := ⟨(dense_smoothLocus_of_isDenseFamily hξ A.hom).denseRange_val⟩
+  have : IsDominant j := ⟨(dense_smoothLocus_of_isDenseFamily hξ A.hom).denseRange_subtypeVal⟩
   have : IsSchemeTheoreticallyDominant j := of_isDominant j
   -- Hence `A ×_S B` is reduced: the flat base change `j'` of `j` is scheme-theoretically dominant,
   -- and its source is smooth over the reduced `B`.

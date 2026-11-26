@@ -71,7 +71,7 @@ lemma New.Variety.cancels_moebius_of_factorsThrough_sup {E n : Type} {X : Type*}
     refine .trans ?_ (sum_fiberwise_eq_sum_filter ..).symm
     by_cases h : W ≤ B
     · simp [h, μ, ← Int.cast_inj (α := ℂ), prod_eq_zero (i := 0), q_binomial_submodule,
-        ← card_ResField, zero_lt_iff, ne_bot_of_le_ne_bot hW]
+        ← card_ResField, pos_iff_ne_zero, ne_bot_of_le_ne_bot hW]
     · simp [h]
   have F_eq_zero (B : Submodule (ResField w) (n → ResField w)) : F B = 0 := by
     simpa using moebius_inversion_bot F 0 sum_F B

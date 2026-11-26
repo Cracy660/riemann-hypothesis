@@ -575,7 +575,7 @@ theorem New.Space.exists_form_eq_tsum_of_fixesLeft (he : IsIdempotentKernel e)
       (y.val : G E s → ℂ) = fun g : G E s ↦ ∑' i : ι, realConv e (W i) g := by
   -- The series is the convolution with `e` of the bounded sum of the `W i`.
   have h_bounded (g : G E s) : ‖∑' i : ι, W i g‖ ≤ M.toReal := by
-    simpa using toReal_mono hM (enorm_tsum_le_tsum_enorm.trans (h_le g))
+    simpa using toReal_mono hM (eNorm_tsum_le_tsum_eNorm.trans (h_le g))
   -- Convolve term by term: the kernel is integrable and the sum of the norms is at most `M`.
   have h_termwise (g : G E s) :
       ∑' i : ι, realConv e (W i) g = realConv e (fun x : G E s ↦ ∑' i : ι, W i x) g := by
@@ -584,7 +584,7 @@ theorem New.Space.exists_form_eq_tsum_of_fixesLeft (he : IsIdempotentKernel e)
     refine (hasSum_integral_of_lintegral_tsum_lt_top ?_).tsum_eq
     calc ∫⁻ x : GInf E s, ∑' i : ι, ‖e x * W i (g * (x, 1))‖ₑ
         ≤ ∫⁻ x : GInf E s, ‖e x‖ₑ * M := by
-          simp only [enorm_mul, ENNReal.tsum_mul_left]
+          simp only [eNorm_mul, ENNReal.tsum_mul_left]
           grw [h_le]
       _ < ⊤ := by
           rw [lintegral_mul_const' _ _ hM]

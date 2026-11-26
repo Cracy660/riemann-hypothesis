@@ -309,7 +309,7 @@ lemma New.sum_enorm_sq_integral_mul_star {𝔰 : Shape} {I : Type*} [Fintype I] 
       Complex.conjCLE.integrable_comp_iff.mpr ((hW.integrable_smul hψ (s * g)).eval_piLp i)
     have h_conj : ∑ j, ‖∫ y, conj (star (ψ y * W (s * g * y) i) * W (t * 1 * y) j)‖ₑ ^ 2 =
         ∑ j, ‖∫ y, conj (star (ψ y * W (s * g * y) i) * W (1 * y) j)‖ₑ ^ 2 := by
-      simp only [integral_conj, RCLike.enorm_conj, h_invariant h_int ht 1]
+      simp only [integral_conj, RCLike.eNorm_conj, h_invariant h_int ht 1]
     simpa [mul_assoc, mul_comm, mul_left_comm] using h_conj
   -- each column: remove `s`
   have h_int (j : I) : Integrable fun y ↦ ψ y * star (W y j) :=
@@ -373,7 +373,7 @@ lemma New.BesselSystem.lintegral_indicator_mul_enorm_sq_le {𝔰 : Shape} {B : �
   have h_invariant : besselS.FixesLeft fun y : 𝔰.G₁ ↦ ‖X.besselFn .full y‖ₑ ^ 2 := by
     simp +contextual [hW.enorm_besselS_mul]
   -- unfold along `besselU0` (`h_fibre`), then along the frame entries, which lie in discs
-  grw [lintegral_mul_le_of_frameMatrix_le (hW.stronglyMeasurable.enorm.pow_const 2)
+  grw [lintegral_mul_le_of_frameMatrix_le (hW.stronglyMeasurable.eNorm.pow_const 2)
     (measurable_one.indicator hA) h_invariant h_fibre h_frame (by bound),
     X.isCutPair.lintegral_sq_full_eq]
 
@@ -411,7 +411,7 @@ lemma New.isL2Contraction_of_columns {𝔰 : Shape} {I : Type*} [Fintype I] [Dec
       Set.mem_of_indicator_ne_zero (left_ne_zero_of_mul hy)
   have h_weight : ∑ j, ∫⁻ y, ‖β j y‖ₑ ^ 2 =
       ∫⁻ y, ‖φ y‖ₑ ^ 2 ∂volume.withDensity fun y ↦ A.indicator 1 y * ‖W y‖ₑ ^ 2 := by
-    rw [← lintegral_finsetSum' _ fun j _ ↦ (hβ j).aestronglyMeasurable.enorm.pow_const 2,
+    rw [← lintegral_finsetSum' _ fun j _ ↦ (hβ j).aestronglyMeasurable.eNorm.pow_const 2,
       lintegral_withDensity_eq_lintegral_mul _ (by fun_prop) (by fun_prop)]
     simp [β, Set.indicator, apply_ite, mul_comm, mul_pow, euclidean_enorm_sq_eq_sum, mul_sum]
   refine (lintegral_congr h_columns).trans_le ?_

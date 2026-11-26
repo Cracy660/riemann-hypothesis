@@ -392,8 +392,8 @@ lemma ofReal_genIndex_le_enorm_prod_sq (x : LocProd T) :
     _ ≤ ENNReal.ofReal (∏ w : T, (1 + √(‖x w‖⁻¹ - 1)) ^ 2) := by
       gcongr with w
       exact h_real _
-    _ ≤ ‖∏ w : T, (1 + √(‖x w‖⁻¹ - 1)) ^ 2‖ₑ := Real.ofReal_le_enorm _
-    _ = _ := by rw [Finset.prod_pow, enorm_pow]
+    _ ≤ ‖∏ w : T, (1 + √(‖x w‖⁻¹ - 1)) ^ 2‖ₑ := Real.ofReal_le_eNorm _
+    _ = _ := by rw [Finset.prod_pow, eNorm_pow]
 
 end
 
@@ -433,7 +433,7 @@ theorem exists_integralPlace : ∃ P : IntegralPlace (LocProd T), P.ψ = S.charO
       modulus := modulus
       ψ := S.charOnPlaces T
       kernelBound := 1
-      continuous_psi := continuous_ψf.subtype_val.comp ((continuous_adeleOfLocal T).const_mul _)
+      continuous_psi := continuous_ψf.subtypeVal.comp ((continuous_adeleOfLocal T).const_mul _)
       measurable_modulus := by
         simp [modulus, genIndex_eq_inv_prod_norm]
         fun_prop

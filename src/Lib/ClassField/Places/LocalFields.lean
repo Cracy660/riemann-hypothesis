@@ -541,7 +541,7 @@ lemma IsLocalGalois.isLocalExtension (V : OpenSubgroup Γ) (k' : Type*) [Field k
     hπ'.exists_valuationVia_eq_zpow L _ (by simp)
   -- `v(π') ^ e = v(π) ≤ 1` and `v(π') < 1`.
   have he_nonneg : 0 ≤ e := by
-    simpa [zero_lt_iff, hπ'.valuationVia_lt_one, valuationVia, he,
+    simpa [pos_iff_ne_zero, hπ'.valuationVia_lt_one, valuationVia, he,
       IsScalarTower.algebraMap_apply k k' Ω]
       using hπ.valuationVia_lt_one.le
   lift e to ℕ using he_nonneg

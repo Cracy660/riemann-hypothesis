@@ -154,13 +154,13 @@ lemma IsWeakBaseChange.attached_comp_stepKerInclusion
   -- polynomial, so the estimate for `r'` above such a place is the estimate wanted.
   let res : Gal(Ω/stepField χ) →* Gal(Ω/E) := AlgEquiv.restrictScalarsHom E
   have h_res : Topology.IsOpenEmbedding res := isOpenEmbedding_galois_restrict res (by simp [res])
-  have h_cont : Continuous (stepKerInclusion χ) := h_res.continuous_iff.2 continuous_subtype_val
+  have h_cont : Continuous (stepKerInclusion χ) := h_res.continuous_iff.2 continuous_subtypeVal
   have h_normal : (stepKerInclusion χ).range.Normal := by
     rw [stepKerInclusion, MonoidHom.range_comp, inclusion_range]
     exact Normal.map inferInstance _ (stepField χ).fixingSubgroupEquiv.surjective
   have h_nondeg : IsTraceNondeg (r'.comp (stepKerInclusion χ)) :=
     hr'.isTraceNondeg.comp (stepKerInclusion χ) h_normal
-  refine ⟨hr'.continuous.comp h_cont, h_nondeg, (isOpen_stepKer χ).isOpenMap_subtype_val,
+  refine ⟨hr'.continuous.comp h_cont, h_nondeg, (isOpen_stepKer χ).isOpenMap_subtypeVal,
     fun η hη ↦ ?_⟩
   -- At most Frobenius data of `L`, `f'` has the polynomial given by `P'`.
   have h_most' : ∀ᶠ y : FrobeniusDatum (stepField χ) in mostFrobenii (stepField χ),

@@ -942,7 +942,7 @@ theorem isForm_realConv (he : IsCuspKernel B e) (hF : V.IsAutomorphic F)
     refine (h_cover.integral_tendsto_of_countably_generated (h_int g)).congr fun t ↦ ?_
     simp [trunc, realConv, indicator, ← integral_indicator (h_cover.measurableSet t)]
   obtain ⟨⟨⟨Φ, hΦ_form⟩, hΦ_level⟩, rfl : Φ = realConv e F⟩ : realConv e F ∈ W :=
-    W.closed_of_finiteDimensional.mem_of_tendsto tendsto_avg (.of_forall trunc_mem)
+    W.isClosed_of_finiteDimensional.mem_of_tendsto tendsto_avg (.of_forall trunc_mem)
   exact hΦ_form
 
 end New.Space

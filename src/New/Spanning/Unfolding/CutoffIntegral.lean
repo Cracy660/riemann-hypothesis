@@ -88,7 +88,7 @@ lemma enorm_besselKernel (y : InfinitePlace E → 𝔰.G₁) :
 the norm of its integrand. -/
 lemma enorm_amplitude_le (c c' : S.Classes) :
     ‖S.amplitude side c c' γ‖ₑ ≤ S.amplitudeMajorant side c c' γ := by
-  grw [amplitude, MeasureTheory.enorm_integral_le_lintegral_enorm, enorm_toReal_smul_le,
+  grw [amplitude, MeasureTheory.eNorm_integral_le_lintegral_eNorm, enorm_toReal_smul_le,
     amplitudeMajorant]
 
 end New.Filling

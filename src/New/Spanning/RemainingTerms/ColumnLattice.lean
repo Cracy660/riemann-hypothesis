@@ -133,7 +133,7 @@ instance {S : Filling E 𝔰} {c : S.Classes} [HasPrimitiveRoot5040 E] [S.IsAdmi
     isOpen_lt (by fun_prop) continuous_const
   suffices h_zero : ({0} : Set (S.columnLattice ι c)) = Subtype.val ⁻¹' U by
     rw [h_zero]
-    exact hU.preimage continuous_subtype_val
+    exact hU.preimage continuous_subtypeVal
   ext ⟨x, hx⟩
   obtain ⟨q, hq, rfl⟩ := mem_columnLattice.1 hx
   refine ⟨fun h_eq ↦ ?_, fun h_short ↦ Subtype.ext ?_⟩
@@ -180,7 +180,7 @@ lemma span_columnLattice {E : Type} [Field E] [CMType E] {𝔰 : Shape} {ι : Ty
         Set (InfinitePlace E → ι → 𝔰.κ → ℂ)) :=
     denseRange_conjColumnsAtInfinity.mono h_range
   rw [← Submodule.dense_iff_topologicalClosure_eq_top.1 h_dense,
-    (Submodule.closed_of_finiteDimensional _).submodule_topologicalClosure_eq]
+    (Submodule.isClosed_of_finiteDimensional _).submodule_topologicalClosure_eq]
 
 /-- Let the CM field `E` contain a primitive root of unity of order `5040`, hence a square root of
 `-1`. For an algebraic integer `x` of `E`, the sum over the infinite places `v` of the real parts of

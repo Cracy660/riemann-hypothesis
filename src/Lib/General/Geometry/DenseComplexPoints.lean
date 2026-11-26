@@ -378,7 +378,7 @@ lemma New.exists_nnreal_valuation_le_comap_maximalIdeal {A : Type*} (K : Type*) 
       (ht.isAlgebraic.isAlgebraic (c : K)).of_ringHom_of_comp_eq _ _ e.surjective
         V.subtype_injective (RingHom.ext fun a ↦ (hg a).symm)
     obtain ⟨w, hw_ne, hcw⟩ : ∃ w : MvPolynomial t A, w ≠ 0 ∧ c ∣ g w :=
-      hc_alg.exists_nonzero_dvd hc
+      hc_alg.exists_ne_zero_dvd hc
     have h_comap : J.comap g = (J.comap (algebraMap U V)).comap f := (comap_comap _ _).symm
     have hJP : J.comap g ≤ P :=
       h_comap.trans_le ((comap_mono (hJq.trans hq_le)).trans_eq h_centre)

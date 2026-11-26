@@ -288,7 +288,7 @@ lemma New.GaloisRep.exists_isLevel_of_localCongruence_hom {E : Type} {a : ℕ} [
     ϑ.comp (.mk' (fun k ↦ ⟨atPlace v k, ((mem_K k).1 k.2).left⟩) (by simp))
   have χ_near : χ =ᶠ[nhds 1] 1 :=
     .mono (((isOpen_localCongruence (m := 1)).preimage_of_continuous
-      ((continuous_atPlace v).comp continuous_subtype_val)).mem_nhds (by simp)) fun k hk ↦
+      ((continuous_atPlace v).comp continuous_subtypeVal)).mem_nhds (by simp)) fun k hk ↦
       show χ k = 1 from ϑ_one ⟨_, ((mem_K k).1 k.2).left⟩ hk
   have K_off (k : Gf E (Fin a)) (k_int : k ∈ stdLevel E (Fin a)) (k_v : atPlace v k = 1) :
       k ∈ K.1 ↔ k ∈ V := by simp [mem_K, k_v, k_int]
@@ -559,7 +559,7 @@ private lemma New.GaloisRep.exists_attached_of_coeff_mem {ℓ : ℕ} {E : Type} 
     exact ⟨by simpa using p_hecke.isMonicOfDegree hf_ne, neg_mem (p_hecke.coeff_pred_mem hL hf₀),
       fun j ↦ hd p j (coeff_mem p.place p_split _ j p_off star_off p_prime p_hecke)⟩
   exact exists_attached_of_isApproximatingMonoid apx r_cont r_frob
-    L.toSubmodule.complete_of_finiteDimensional d
+    L.toSubmodule.isComplete_of_finiteDimensional d
     most_frob
 
 -- Keeps definitional checks from unfolding the finite sums.

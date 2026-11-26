@@ -122,7 +122,7 @@ def artinAt (v : FinPlace K) :
   -- that of `Γ`, so it passes to the abelianisations.
   (QuotientGroup.map _ (commutator Γ).topologicalClosure (decompGroup Γ (placeOver v)).subtype
       (Set.MapsTo.closure (fun g hg ↦
-        map_derivedSeries_le_derivedSeries (decompGroup Γ (placeOver v)).subtype 1 ⟨g, hg, rfl⟩)
+        Subgroup.map_derivedSeries_le_derivedSeries (decompGroup Γ (placeOver v)).subtype 1 ⟨g, hg, rfl⟩)
         (by fun_prop))).comp (localArtin Γ (placeOver v) v)
 
 /-- The global Artin map from the finite ideles to the topological abelianisation of `Γ`: a
@@ -1034,7 +1034,7 @@ lemma exists_eq_pow_and_apply_conj_eq_pow {γ : inertiaGroup Gal(Ω/K) A} (hγ :
   let f' : inertiaGroup D A →* P := (f.domRestrict D).domRestrict _
   let incl (g : inertiaGroup Gal(Ω/K) A) : inertiaGroup D A := ⟨⟨g, g.property.left⟩, g.property⟩
   have h_open : IsOpen (SetLike.coe f'.ker) := isOpen_of_mem_nhds _ <|
-    mem_of_superset (continuous_subtype_val.subtype_val.tendsto 1 hf) fun g hg ↦ hg g.property
+    mem_of_superset (continuous_subtypeVal.subtypeVal.tendsto 1 hf) fun g hg ↦ hg g.property
   obtain ⟨h_galois, -, h_unif⟩ := h.isLocalGalois_and_residueCard_eq_and_isUniformiser Gal(Ω/K)
   have h_local : ∀ s : inertiaGroup D A,
       (IsPrimitiveRoot (s • y / y) n → ∀ g : inertiaGroup D A, ∃ i : ℕ, f' g = f' s ^ i) ∧

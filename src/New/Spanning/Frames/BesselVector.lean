@@ -515,7 +515,7 @@ theorem enorm_sq_besselVector_mul_unipotentMass (y : T.G) :
       -- `toReal_prod` would expand the product `F.unipotentMass`.
       simp [← ofReal_norm, mul_comm F.unipotentMass, -toReal_prod]
     _ = ν {u : T.G | u * y ∈ Z.val} := by
-      rw [h_unfold, enorm_smul, h_phase, mul_one, Real.enorm_of_nonneg measureReal_nonneg,
+      rw [h_unfold, eNorm_smul, h_phase, mul_one, Real.eNorm_of_nonneg measureReal_nonneg,
         ofReal_measureReal ((ascConv_setOf_mul_mem_le_one Z y).trans_lt one_lt_top).ne]
 
 /-- For a large lattice datum `F` and a group `Z` with K(g) ≤ Z ≤ K, the normalised Bessel vector
@@ -587,7 +587,7 @@ theorem lintegral_inner_besselVector_sq_mul_le (x : T.G) :
     · simp [hy]
     have h_schwarz : ‖⟪Z.besselVector x, Z.besselVector y⟫_ℂ‖ₑ ≤
         ‖Z.besselVector x‖ₑ * ‖Z.besselVector y‖ₑ :=
-      coe_le_coe.2 (nnnorm_inner_le_nnnorm _ _)
+      coe_le_coe.2 (nnNorm_inner_le_nnNorm _ _)
     rw [Set.indicator_of_mem (h_supp y hy)]
     grw [h_schwarz, mul_pow, mul_assoc, enorm_sq_besselVector_mul_le_one, mul_one]
   calc

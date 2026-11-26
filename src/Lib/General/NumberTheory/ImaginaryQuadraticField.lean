@@ -127,7 +127,7 @@ instance : NeZero d := ⟨by grind [Fact]⟩
 lemma minpoly_I_mul_sqrt : X ^ 2 - C (-d : ℚ) = minpoly ℚ (I * (√d : ℂ)) := by
   have h_irred : Irreducible (X ^ 2 - C (-d : ℚ)) := by
     -- `-d` is negative, hence not a square in `ℚ`
-    refine X_pow_sub_C_irreducible_of_prime Nat.prime_two fun b hb ↦ ?_
+    refine irreducible_X_pow_sub_C_of_prime Nat.prime_two fun b hb ↦ ?_
     simpa [hb, NeZero.ne] using sq_nonneg b
   exact minpoly.eq_of_irreducible_of_monic h_irred (by simp [mul_pow, ← ofReal_pow]) (by monicity!)
 
@@ -446,7 +446,7 @@ lemma two_pow_dvd_or_of_pow_eq_one {q : ℤ} {o s : ℕ} (ho : 0 < o)
   have h_dvd : (2 : ℤ) ^ (s + 1) ∣ q ^ (o * 2) - 1 :=
     (intCast_eq_intCast_iff_dvd_sub 1 (q ^ (o * 2)) (2 ^ (s + 1))).1 (by simp [h_pow, pow_mul])
   have h_odd : Odd q := by
-    simpa [coe_int_isUnit_iff_isCoprime, IsCoprime.pow_left_iff] using
+    simpa [isUnit_intCast_iff_isCoprime, IsCoprime.pow_left_iff] using
       IsUnit.of_pow_eq_one h_pow ho.ne'
   have lte {e : ℤ} (he : e ^ (o * 2) = 1) (h_four : 4 ∣ q - e) : 2 ^ s ∣ (q - e) * o := by
     have h_lte : emultiplicity 2 (q ^ (o * 2) - e ^ (o * 2)) =

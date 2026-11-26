@@ -208,7 +208,7 @@ lemma padicValNat_factorial_mem_Icc {n K : ℕ} (hn : n < p ^ K) :
   -- are at most `K` digits, each at most `p - 1`.
   have hp1 : 1 < p := hp.out.one_lt
   have legendre : (p - 1) * padicValNat p n ! + (p.digits n).sum = n := by
-    rw [Nat.padicValNat_def, sub_one_mul_padicValNat_factorial,
+    rw [Nat.padicValNat_def, Nat.Prime.sub_one_mul_multiplicity_factorial,
       Nat.sub_add_cancel (digit_sum_le p n)]
     exact hp.out
   have digit_le : ∀ d ∈ p.digits n, d ≤ p - 1 :=

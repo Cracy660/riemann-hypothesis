@@ -423,7 +423,7 @@ private lemma range_intTrace_stepField_eq_top {p : ℕ} (h_rank : Module.finrank
   have hu_ne : u ≠ 0 := coeIdeal_ne_zero.mpr (P.below E).ne_bot
   suffices h_div : trace E (stepField χ) x ∈ u / u by
     rw [div_self hu_ne] at h_div
-    exact coe_one.le h_div
+    exact coeToSubmodule_one.le h_div
   -- for `a ∈ u ⊆ P`, `x * a` is an integer `z`, and `tr z = tr x * a` lies in `u`
   refine (mem_div_iff_of_ne_zero hu_ne).mpr ?_
   rintro _ ⟨a, ha, rfl⟩
@@ -732,12 +732,12 @@ lemma New.nonempty_weilData_of_not_dvd_differentIdeal {E L : Type} [Field E] [CM
   have h_halves : halfOrder u + halfOrder (star u) = -(v (s.val u)).log := by
     simp only [halfOrder, star_star, hs_star]
     rcases lt_trichotomy u (star u) with h | h | h
-    · rw [if_pos h, if_neg (lt_asymm h)]
+    · rw [ite_eq_left h, ite_eq_right (lt_asymm h)]
       omega
     · have := hs_even u h.symm
-      rw [← h, if_neg (lt_irrefl u)]
+      rw [← h, ite_eq_right (lt_irrefl u)]
       omega
-    · rw [if_neg (lt_asymm h), if_pos h]
+    · rw [ite_eq_right (lt_asymm h), ite_eq_left h]
       omega
   rw [h_log_eq]
   linarith [h_halves, hs_ord u]

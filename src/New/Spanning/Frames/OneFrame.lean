@@ -60,7 +60,7 @@ lemma exists_ne_zero_of_pivotL1Norm_ne_zero (h : F.pivotL1Norm l k g y ≠ 0) :
   have h_integrand (x : T.G) (hx : x ∈ floorGroup (l + 1)) :
       k (x * (σ * g)) (x * (σ * y)) = 0 := by
     simpa only [mul_assoc] using h_zero (x * σ) (mul_mem (floorGroup_anti l.le_succ hx) hσ)
-  exact enorm_ne_zero.1 h_ne
+  exact eNorm_ne_zero.1 h_ne
     (integral_eq_zero_of_ae ((ae_descConv_mem ae_floorMeasure_mem).mono h_integrand))
 
 /-- For `l ≤ 𝔰.ϱ`, the integral over σ against θ_l = `F.floorMeasure l` of the squared modulus of
@@ -188,7 +188,7 @@ lemma pivotL1Norm_sq_le (hk : F.IsPairingKernel j k d) {u v : T.G → ENNReal}
   have h_supp : f.support ⊆ N := by
     intro σ hσ
     obtain ⟨-, h_ne⟩ := indicator_apply_ne_zero.1 hσ
-    exact hk.isNear_of_partialCorrelation_ne_zero (enorm_ne_zero.1 h_ne)
+    exact hk.isNear_of_partialCorrelation_ne_zero (eNorm_ne_zero.1 h_ne)
   have h_sq (σ : T.G) : f σ ^ 2 ≤ u (σ * g) * v σ := by
     by_cases hσ : σ ∈ floorGroup l
     · simpa [f, hσ] using h_bound σ hσ

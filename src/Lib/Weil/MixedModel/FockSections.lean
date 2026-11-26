@@ -317,7 +317,7 @@ lemma lintegral_fockMoment_realHeisenbergOp_fourier_ne_top {d : EuclideanSpace �
   refine (h_dom.hasFiniteIntegral.trans_le' ?_).ne
   -- `fockMoment N (realHeisenbergOp y v) ≤ (1 + ‖y‖) ^ N * fockMoment N v`, then compare the
   -- integrands.
-  grw [lintegral_prod _ h_dom.aestronglyMeasurable.enorm, fockMoment_realHeisenbergOp_le,
+  grw [lintegral_prod _ h_dom.aestronglyMeasurable.eNorm, fockMoment_realHeisenbergOp_le,
     (fockMoment_eq ..).le, lintegral_const_mul_le]
   gcongr with ⟨y, b⟩ w
   -- (`↓` moves the comparison to real numbers, where `h_point` lives, before the other lemmas)

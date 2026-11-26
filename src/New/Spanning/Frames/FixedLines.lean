@@ -752,7 +752,7 @@ lemma IsFillingData.exists_massIntegral_pi_eq (h : S.IsFillingData T F)
       _ = ‖t.toReal‖ₑ ^ 2 * t * ∏ i : ι, (F' i).massIntegral (Y i) := by
         rw [ht, lintegral_smul_measure, lintegral_pi_prod _ (by fun_prop), smul_eq_mul, mul_assoc]
         simp only [PlaceData.massIntegral, f]
-  · rw [coe_comap, coe_pi, ← h_emb.map_apply, ht, Measure.smul_apply, Measure.pi_pi, smul_eq_mul]
+  · rw [coe_comap, coe_pi, ← h_emb.map_apply, ht, smul_apply, Measure.pi_pi, smul_eq_mul]
 
 /-- Let `F` be a filling datum at `T` and `F' i` a filling datum at each fibre of a map `blk` from
 the places to a finite type, and let `ϰ` be the mass integral and `vol` the Haar volume. If on each

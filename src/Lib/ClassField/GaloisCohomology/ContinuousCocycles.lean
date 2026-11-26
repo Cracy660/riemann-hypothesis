@@ -335,7 +335,7 @@ def QZChar.abelianLift [IsTopologicalGroup Γ] (χ : QZChar Γ) :
     TopologicalAbelianization Γ →* Multiplicative QZ :=
   -- the kernel is closed and contains the commutators
   QuotientGroup.lift (commutator Γ).topologicalClosure (toHom χ)
-    (closure_minimal (Abelianization.commutator_subset_ker (toHom χ)) (QZChar.isClosed_ker χ))
+    (closure_minimal (Group.Abelianization.commutator_le_ker (toHom χ)) (QZChar.isClosed_ker χ))
 
 variable (Γ)
 
